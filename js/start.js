@@ -28,7 +28,6 @@ document.addEventListener(
           //put all the names in the list
 
           $("#sel2").append(options);
-          console.log(options);
           $("#sel2").show();
           //get the name of the selected gdg
           $("#sel2").change(function() {
@@ -38,34 +37,39 @@ document.addEventListener(
             //   //redirect to event-rsvp page
             //   window.location.replace("/start.html?gdg=" + gdgName);
             // });
-            console.log(gdgName);
-            const url = "https://api-gdg.herokuapp.com/" + gdgName + "/events";
+            var abtGDG;
+            res.forEach(element=> {
+              if(element.urlname==gdgName)
+              {
+                abtGDG = element;
+              }
+            });
+            var gdgEvents = abtGDG.events;
+            var ev = '';
+            gdgEvents.upcoming.forEach(element => {
+              ev += getTemplateNew(element);
+            });
+            $("#fetch-event-upcoming").append(ev);
+            ev = '';
+            gdgEvents.past.forEach(element => {
+              ev += getTemplateNew(element);
+            });
+              $("#fetch-event-past").append(ev);
+          
             var mem_event;
             var events = [];
-
-            //API request
-            fetch(url)
-              .then(data => {
-                return data.json();
-              })
-              .then(res => {
-                res.forEach(element => {
-                  // console.log(element);
-                  var ev = getTemplateNew(element);
-
-                  $("#fetch-event").append(ev);
-                });
-              });
+            
           });
         });
     });
+    
     function getTemplate(member) {
       var tmp = "<option>" + member.urlname + "</option>";
       return tmp;
     }
 
     function getTemplateNew(member) {
-      console.log(member);
+      //console.log(member);
       var template = `<div class="card" style="height: 200px">
       <img
         src="https://cloud.google.com/_static/images/cloud/icons/favicons/onecloud/super_cloud.png"
@@ -76,11 +80,13 @@ document.addEventListener(
         <h4><b>${member.name}</b></h4>
         <div class="rsvp-btn">
           <p>${member.local_date}</p>
-          <button href=${
+          <a href=${
             member.link
-          } class="button" style="vertical-align:middle">
+          } target="_blank">
+          <button class="button" style="vertical-align:middle">
             <span>Info</span>
           </button>
+          </a>
         </div>
       </div>
     </div>`;
