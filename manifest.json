@@ -2,10 +2,10 @@
   "author": "Author Name",
   "browser_action": {
     "default_icon": {
-      "16": "img/icon.jpg",
-      "32": "img/icon.jpg",
-      "48": "img/icon.jpg",
-      "128": "img/icon.jpg"
+      "16": "img/favicon.png",
+      "32": "img/favicon.png",
+      "48": "img/favicon.png",
+      "128": "img/favicon.png"
     },
     "default_popup": "start.html"
   },
