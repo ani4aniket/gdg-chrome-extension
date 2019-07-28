@@ -1,0 +1,35 @@
+{
+  "author": "Author Name",
+  "browser_action": {
+    "default_icon": {
+      "16": "img/icon.jpg",
+      "32": "img/icon.jpg",
+      "48": "img/icon.jpg",
+      "128": "img/icon.jpg"
+    },
+    "default_popup": "start.html"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "js/jquery.min.js",
+        "js/popup.js",
+        "js/start.js",
+        "js/fstdropdown.js"
+      ],
+      "css": ["css/style.css", "css/fstdropdown.css"],
+      "matches": ["http://*/*"]
+    }
+  ],
+  "description": "GDG Calender Tool",
+  "icons": {
+    "16": "img/icon.jpg",
+    "32": "img/icon.jpg",
+    "48": "img/icon.jpg",
+    "128": "img/icon.jpg"
+  },
+  "manifest_version": 2,
+  "name": "GDG Calender Tool",
+
+  "version": "1.0"
+}
